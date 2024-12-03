@@ -2,15 +2,80 @@
 <html>
 <head>
     <title>Delivery Fee Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 20px 40px;
+            width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .container h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #6c5ce7;
+            margin-bottom: 10px;
+        }
+        .container h2 {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+        input {
+            font-size: 18px;
+            padding: 10px;
+            width: 90%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        input:focus {
+            border-color: #6c5ce7;
+        }
+        button {
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #4b4ec8;
+        }
+    </style>
 </head>
 <body>
-    <h1>Delivery Fee Calculator</h1>
-    <form id="priceForm">
-        <label for="zipCode">Enter Zip Code:</label>
-        <input type="text" id="zipCode" name="zipCode" required>
-        <button type="button" onclick="calculatePrice()">Get Price</button>
-    </form>
-    <h2 id="result"></h2>
+    <div class="container">
+        <h1>THE SWEET TOOTH</h1>
+        <p>Find your delivery fee below:</p>
+        <form id="priceForm">
+            <label for="zipCode">Enter Zip Code:</label><br>
+            <input type="text" id="zipCode" name="zipCode" placeholder="Enter your zip code">
+            <br>
+            <button type="button" onclick="calculatePrice()">Get Price</button>
+        </form>
+        <h2 id="result"></h2>
+    </div>
 
     <script>
         // Zip code to price mapping
@@ -26,18 +91,23 @@
             "33139": 25,
             "33180": 15,
             "33020": 20,
-            "33014": 25
+            "33014": 25,
+            "33156": 35
         };
 
         function calculatePrice() {
-            const zipCode = document.getElementById("zipCode").value;
+            // Get the zip code from the input
+            const zipCode = document.getElementById("zipCode").value.trim();
+
+            // Fetch the corresponding price
             const price = zipPrices[zipCode];
             const resultElement = document.getElementById("result");
 
+            // Check if the zip code exists in the list
             if (price !== undefined) {
                 resultElement.innerHTML = `Delivery Fee: $${price}`;
             } else {
-                resultElement.innerHTML = "Zip code not found.";
+                resultElement.innerHTML = "Zip code not found or delivery unavailable.";
             }
         }
     </script>

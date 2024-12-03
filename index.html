@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delivery Fee Calculator</title>
+</head>
+<body>
+    <h1>Delivery Fee Calculator</h1>
+    <form id="priceForm">
+        <label for="zipCode">Enter Zip Code:</label>
+        <input type="text" id="zipCode" name="zipCode" required>
+        <button type="button" onclick="calculatePrice()">Get Price</button>
+    </form>
+    <h2 id="result"></h2>
+
+    <script>
+        // Zip code to price mapping
+        const zipPrices = {
+            "33134": 25,
+            "33131": 25,
+            "33256": 35,
+            "33021": 20,
+            "33146": 25,
+            "33130": 25,
+            "33186": 40,
+            "33126": 30,
+            "33139": 25,
+            "33180": 15,
+            "33020": 20,
+            "33014": 25
+        };
+
+        function calculatePrice() {
+            const zipCode = document.getElementById("zipCode").value;
+            const price = zipPrices[zipCode];
+            const resultElement = document.getElementById("result");
+
+            if (price !== undefined) {
+                resultElement.innerHTML = `Delivery Fee: $${price}`;
+            } else {
+                resultElement.innerHTML = "Zip code not found.";
+            }
+        }
+    </script>
+</body>
+</html>
